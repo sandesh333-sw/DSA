@@ -30,11 +30,10 @@ public class Diameter {
         Info leftInfo = diameter(root.left);
         Info rightInfo = diameter(root.right);
 
+        int diam = Math.max(Math.max(leftInfo.diam, rightInfo.diam), leftInfo.ht+ rightInfo.ht  +1 );
         int ht = Math.max(leftInfo.ht, rightInfo.ht) + 1;
-        int selfDiam = leftInfo.ht + rightInfo.ht + 1;
-        int maxDiam = Math.max(selfDiam, Math.max(leftInfo.diam, rightInfo.diam));
 
-        return new Info(maxDiam, ht);
+        return new Info(diam, ht);
     }
 
     public static void main(String[] args) {

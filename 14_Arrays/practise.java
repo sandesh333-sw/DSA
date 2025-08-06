@@ -1,29 +1,25 @@
 public class practise {
     public static int trapped(int[] height){
         int n = height.length;
-
-        //calculate left max boundary
-        int leftmax[] = new int[n];
-        leftmax[0] = height[0];
+        //creating left max
+        int[] leftMax = new int[n];
+        leftMax[0] = height[0];
         for(int i=1; i<n; i++){
-            leftmax[i] = Math.max(leftmax[i-1], height[i]);
+            leftMax[i] = Math.max(leftMax[0], height[i]);
+        }
+        //creating right max
+        int[] rightMax = new int[n];
+        rightMax[n-1] = height[n-1];
+        for(int j=n-2; j>=0; j--){
+            rightMax[j] = Math.max(rightMax[j+1], height[j]);
         }
 
-        //calculate right max boundary
-        int rightmax[] = new int[n];
-        rightmax[n-1] = height[n-1];
-        for(int i=n-2; i>=0; i--){
-            rightmax[i] = Math.max(rightmax[i+1], height[i]);
-        }
-
-        //water level
+        //solving
         int trappedwater = 0;
-        for(int i=0; i<n; i++){
-            int waterlevel = Math.min(leftmax[i], rightmax[i]);
-
-            trappedwater +=  waterlevel - height[i];
+        for(int k=0; k<n; k++){
+            int waterlevel = Math.min(leftMax[k], rightMax[k]);
+            trappedwater += waterlevel -  height[k];
         }
-        
 
         return trappedwater;
     }

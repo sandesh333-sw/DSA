@@ -1,6 +1,5 @@
 import java.util.*;
 
-
 public class BinaryTrees {
     static class Node {
         int data;
@@ -41,9 +40,9 @@ public class BinaryTrees {
             preorder(root.right);
         }
 
-        //Inorder Traversal
-        public static void inorder(Node root){
-            if(root == null){
+        // Inorder Traversal
+        public static void inorder(Node root) {
+            if (root == null) {
                 return;
             }
             inorder(root.left);
@@ -51,60 +50,58 @@ public class BinaryTrees {
             inorder(root.right);
         }
 
-        //Postorder Traversal
+        // Postorder Traversal
         public static void postorder(Node root) {
-           if (root == null) {
-             return;
-             }
-
-             postorder(root.left);
-             postorder(root.right);
-             System.out.print(root.data + " ");
+            if (root == null) {
+                return;
             }
 
-            //Level Order Traversal
-            // Level Order Traversal
-public static void levelOrder(Node root) {
-    if (root == null) {
-        return;
-    }
+            postorder(root.left);
+            postorder(root.right);
+            System.out.print(root.data + " ");
+        }
 
-    Queue<Node> q = new LinkedList<>();
-    q.add(root);
-    q.add(null); // Marker for end of level
-
-    while (!q.isEmpty()) {
-        Node currNode = q.remove();
-
-        if (currNode == null) {
-            System.out.println(); // End of current level
-            if (q.isEmpty()) {
-                break;
-            } else {
-                q.add(null); // Add marker for next level
+        // Level Order Traversal
+        public static void levelOrder(Node root) {
+            if (root == null) {
+                return;
             }
-        } else {
-            System.out.print(currNode.data + " ");
-            if (currNode.left != null) {
-                q.add(currNode.left);
-            }
-            if (currNode.right != null) {
-                q.add(currNode.right);
+
+            Queue<Node> q = new LinkedList<>();
+            q.add(root);
+            q.add(null); // Marker for end of level
+
+            while (!q.isEmpty()) {
+                Node currNode = q.remove();
+
+                if (currNode == null) {
+                    System.out.println(); // End of current level
+                    if (q.isEmpty()) {
+                        break;
+                    } else {
+                        q.add(null); // Add marker for next level
+                    }
+                } else {
+                    System.out.print(currNode.data + " ");
+                    if (currNode.left != null) {
+                        q.add(currNode.left);
+                    }
+                    if (currNode.right != null) {
+                        q.add(currNode.right);
+                    }
+                }
             }
         }
-    }
-}
-
 
     }
 
     public static void main(String args[]) {
-        int[] nodes = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        int[] nodes = { 1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1 };
         Binary.idx = -1; // reset index before building
         Node root = Binary.buildTree(nodes);
 
         System.out.println("Preorder traversal:");
-        //Binary.preorder(root);
+        // Binary.preorder(root);
         Binary.inorder(root);
     }
 }

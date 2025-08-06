@@ -34,6 +34,7 @@ public class LowestCA1 {
     }
 
     // LCA using path comparison
+    
     public static Node Lca(Node root, int n1, int n2) {
         ArrayList<Node> path1 = new ArrayList<>();
         ArrayList<Node> path2 = new ArrayList<>();
