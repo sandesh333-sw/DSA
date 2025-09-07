@@ -1,19 +1,24 @@
 public class Practise {
-    public static int PairWays(int n){
+
+    public static void removeDuplicates(String str, int idx, StringBuilder newStr, boolean[] map){
         //base case
-        if(n == 1 || n==2){
-            return n;
+        if(idx == str.length()){
+            System.out.println(newStr);
+            return;
         }
 
-        //work
-        int fnm1 = PairWays(n-1);
-        int pair = fnm1 * PairWays(n-2);
-        int totWays = fnm1 + pair;
-
-        return totWays;
+        char curr = str.charAt(idx);
+        if(map[curr - 'a'] == true){
+            removeDuplicates(str, idx+1, newStr, map);
+        } else {
+            map[curr - 'a'] = true;
+            removeDuplicates(str, idx+1, newStr.append(curr), map);
+        }
     }
+   
     public static void main(String args[]){
-
-        PairWays(3);
+        String str = "agasfdaeeeewesaa";
+        boolean[] map = new boolean[26];
+        removeDuplicates(str, 0, new StringBuilder(""), map);
     }
 }

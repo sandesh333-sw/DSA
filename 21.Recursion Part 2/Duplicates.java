@@ -7,7 +7,7 @@ public class Duplicates {
 
         // Processing
         char currChar = str.charAt(idx);
-        if (map[currChar - 'a']) {
+        if (map[currChar - 'a'] == true) {
             // Skip duplicate character
             removeDuplicates(str, idx + 1, newStr, map);
         } else {
@@ -20,6 +20,6 @@ public class Duplicates {
     public static void main(String[] args) {
         String str = "aabbccddeeff";
         boolean[] map = new boolean[26]; // Track if character has appeared
-        removeDuplicates(str, 0, new StringBuilder(), map);
+        removeDuplicates(str, 0, new StringBuilder(""), map);
     }
 }

@@ -1,32 +1,19 @@
-public class Practise {
-   public static void decreasing(int n){
-    //base case
-    if(n == 1){
-        System.out.print(n);
-        return;
-    }
-    System.out.print(n);
-    decreasing(n-1);;
-   }
+public class Practise{
 
-   public static void increasing(int n){
-    if(n == 1){
-        System.out.print(n);
-        return ;
-    }
-    increasing(n-1);
-    System.out.print(n);
-   }
+    public static boolean isSorted(int[] arr, int i){
+        if(i == arr.length-1){
+            return true;
+        }
 
-   public static int fact(int n){
-    if(n == 0){
-        return 1;
+        if(arr[i] > arr[i+1]){
+            return false;
+        }
+
+        return isSorted(arr, i+1);
     }
-    int fnm1 = fact(n-1);
-    int fn = n * fnm1;
-    return fn;
-   }
-    public static void main(String args[]){     
-        increasing(5);
+    public static void main(String args[]){
+        int[] arr = {2,4,5,6};
+       boolean result = isSorted(arr, 0);
+       System.out.println(result);
     }
 }
