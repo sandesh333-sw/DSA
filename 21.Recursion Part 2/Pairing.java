@@ -5,6 +5,7 @@ public class Pairing {
         }
     //single
     int fnm1 = friendsPairing(n-1);
+    
     //pair
     int fnm2 = friendsPairing(n-2);
     int pairWays = (n-1) * fnm2;

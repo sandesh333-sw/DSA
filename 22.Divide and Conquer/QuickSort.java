@@ -22,6 +22,7 @@ public class QuickSort {
         }
 
         i++;
+        
         // Swap pivot to its correct position
         int temp = arr[ei];
         arr[ei] = arr[i];
