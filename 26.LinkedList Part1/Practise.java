@@ -101,18 +101,41 @@ public class Practise {
         return -1;
     }
 
+    public static void nthNode(int n){
+        int sz = 0;
+        Node temp = head;
+        while(temp != null){
+            temp = temp.next;
+            sz++;
+        }
+
+        if(n == sz){
+            head = head.next;
+            return;
+        }
+
+        int i = 1;
+        Node nod = head;
+        int idx = sz - n;
+        while(i < idx){
+            nod = nod.next;
+            i++;
+        }
+        nod.next = nod.next.next;
+        return;
+
+    }
+
     public static void main(String args[]){
         Practise ll = new Practise();
         ll.addLast(1);
         ll.addLast(2);
         ll.addLast(3);
-        System.out.println("Before adding in middle");
-        ll.printL();
-        
-        ll.addMiddle(9, 1);
-        System.out.println("After adding in middle");
-        ll.printL();
-       System.out.println(SearchLL(9));
+        System.out.println("Full linkedlist");
+       ll.printL();
+       ll.nthNode(1);
+       System.out.println("Node later is");
+       ll.printL();
 
     }
 }

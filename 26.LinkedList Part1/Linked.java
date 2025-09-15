@@ -88,7 +88,7 @@ public class Linked {
             int val = head.data;
             head = tail = null;
             size = 0;
-            re
+            return val;
         }
         int val = head.data;
         head = head.next;
