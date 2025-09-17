@@ -1,43 +1,41 @@
-
 public class List {
-    public static class Node{
+    // Node class
+    public static class Node {
         int data;
         Node next;
 
-        public Node(int data){
+        public Node(int data) {
             this.data = data;
             this.next = null;
         }
     }
+
+    // Linked List fields
     public static Node head;
     public static Node tail;
     public static int size;
 
-    //Methods
+    // ================================
+    // Methods
+    // ================================
 
-    //Adding a linked list in front
-    public void addFirst(int data){
-
-        //step1= create new node
+    // Add node at the front
+    public void addFirst(int data) {
         Node newNode = new Node(data);
         size++;
-        if(head == null){
-            head = tail= newNode;
+        if (head == null) {
+            head = tail = newNode;
             return;
         }
-
-        //step2
         newNode.next = head;
-
-        //step3
         head = newNode;
     }
 
-    //Adding in last
-    public void addLast(int data){
+    // Add node at the end
+    public void addLast(int data) {
         Node newNode = new Node(data);
         size++;
-        if(head == null){
+        if (head == null) {
             head = tail = newNode;
             return;
         }
@@ -45,71 +43,87 @@ public class List {
         tail = newNode;
     }
 
-    //Print a linked list
-    public void print(){
-        if(head == null){
+    // Print linked list
+    public void print() {
+        if (head == null) {
             System.out.println("LL is empty");
+            return; // stop here
         }
         Node temp = head;
-        while(temp != null){
-            System.out.print(temp.data+ " -->");
+        while (temp != null) {
+            System.out.print(temp.data + " --> ");
             temp = temp.next;
         }
-        System.out.println();
+        System.out.println("null");
     }
-    
 
-    //Detecting Cycle
-    public boolean isCycle(){
+    // Detect cycle using Floyd’s algorithm
+    public boolean isCycle() {
         Node slow = head;
         Node fast = head;
 
-        while(fast != null && fast.next != null){
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(slow == fast){
-                return true;
-            }
 
+            if (slow == fast) {
+                return true; // cycle found
+            }
         }
         return false;
     }
 
-    //Removing cycle
-    public static void removeCycle(){
-        //detect cycle
+    // Remove cycle if present
+    public static void removeCycle() {
         Node slow = head;
         Node fast = head;
         boolean cycle = false;
 
-        while(fast != null && fast.next != null){
+        // 1. Detect cycle
+        while (fast != null && fast.next != null) {
             slow = slow.next;
             fast = fast.next.next;
-            if(fast == slow){
+            if (slow == fast) {
                 cycle = true;
                 break;
             }
         }
 
-        if(cycle == false){
-            return;
-        }
-        
-        //find meeting point
-        slow  = head;
+        if (!cycle) return; // no cycle
+
+        // 2. Find start of cycle
+        slow = head;
         Node prev = null;
-        while(slow != fast){
+        while (slow != fast) {
             prev = fast;
             slow = slow.next;
             fast = fast.next;
         }
 
-        //remove cycle
+        // 3. Break the cycle
         prev.next = null;
-
     }
-     
-    public static void main(String args[]){
- 
+
+    // ================================
+    // Main (Demo)
+    // ================================
+    public static void main(String[] args) {
+        List ll = new List();
+        ll.addLast(1);
+        ll.addLast(2);
+        ll.addLast(3);
+        ll.addLast(4);
+        ll.addLast(5);
+
+        // Create a cycle manually: tail → node with value 3
+        ll.tail.next = ll.head.next.next; // 5 → 3
+
+        System.out.println("Cycle present? " + ll.isCycle()); // true
+
+        removeCycle();
+
+        System.out.println("Cycle present after removal? " + ll.isCycle()); // false
+
+        ll.print(); // 1 --> 2 --> 3 --> 4 --> 5 --> null
     }
 }
