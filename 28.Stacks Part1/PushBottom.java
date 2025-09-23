@@ -14,11 +14,11 @@ public class PushBottom {
     public static void main(String args[]) {
         Stack<Integer> s = new Stack<>();
         s.push(1);
-        s.push(2); // fixed semicolon and changed second value for clarity
+        s.push(2); 
 
         System.out.println("Original Stack: " + s);
 
-        Bottom(s, 0); // push 0 to the bottom
+        Bottom(s, 0);
 
         System.out.println("After pushing to bottom: " + s);
     }
