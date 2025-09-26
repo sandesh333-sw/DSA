@@ -5,18 +5,21 @@ public class StackUsingQueue {
         static Queue<Integer> q1 = new LinkedList<>();
         static Queue<Integer> q2 = new LinkedList<>();
 
+        //isEmpty function
         public static boolean isEmpty(){
             return q1.isEmpty() && q2.isEmpty();
         }
-
+        
+        //add
         public static void push(int data){
            if(!q1.isEmpty()){
             q1.add(data);
-           }  else {
+           }else {
             q2.add(data);
            }
         }
 
+        //pop
         public static int pop(){
             if(isEmpty()){
                 System.out.println("Empty stack");
