@@ -15,6 +15,7 @@ class Node{
 
 public class Build{
 
+    //build a bst
     public static Node insert(Node root, int val){
         if(root == null){
             root = new Node(val);
@@ -41,6 +42,8 @@ public class Build{
         inorder(root.right);
     }
 
+
+    //search in a bst
     public static boolean search(Node root, int key){
         if(root == null){
             return false;
@@ -58,6 +61,14 @@ public class Build{
         }
     }
 
+
+    public static Node delete(Node root, int val){
+        if(root.data < val){
+            root.right = delete(root.right,  val);
+        } else {
+            root.data > val
+        }
+    }
 
     public static void printInRange(Node root, int k1, int k2){
 

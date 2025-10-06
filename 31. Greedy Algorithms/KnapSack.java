@@ -12,7 +12,7 @@ public class KnapSack {
         // Calculate ratio = value/weight
         for (int i = 0; i < val.length; i++) {
             ratio[i][0] = i;
-            ratio[i][1] = val[i] / (double) weight[i];
+            ratio[i][1] = val[i] / (double) weight[i]; //cause ratio so double is important
         }
 
         // Sort by ratio (ascending)
@@ -30,7 +30,8 @@ public class KnapSack {
                 finalVal += val[idx];
             } else {
                 // Take fraction of item
-                finalVal += val[idx] * (capacity / (double) weight[idx]);
+                finalVal += (ratio[i][1] * capacity);
+                capacity=0;
                 break;
             }
         }
