@@ -60,6 +60,7 @@ public static boolean isBirpartite(ArrayList<Edge>[] graph){
                 for(int j=0; j<graph[curr].size(); j++){
                     Edge e = graph[curr].get(j);
                     if(col[e.dest] == -1){
+                        //if my color is 0 put neighbor color 1 otherwise 0
                         int nextCol = col[curr] == 0 ? 1: 0;
                         col[e.dest] = nextCol;
                         q.add(e.dest);

@@ -5,28 +5,20 @@ public class Insert {
     static class Heap {
         ArrayList<Integer> arr = new ArrayList<>();
 
-        // Add a new element to the heap last
+        //1. Add a new element to the heap last 
         public void add(int data) {
             arr.add(data);
             int x = arr.size() - 1; // child index
+            int par = (x-1)/2;
 
-          
-            while (x > 0) {
-                int par = (x - 1) / 2;
-                if (arr.get(x) < arr.get(par)) {
-                    // Swap child and parent
-                    int temp = arr.get(x);
-                    arr.set(x, arr.get(par));
-                    arr.set(par, temp);
-
-                    x = par; // move up to parent
-                } else {
-                    break;
-                }
+            while(arr.get(x) < arr.get(par)){
+                int temp = arr.get(x);
+                arr.set(x, arr.get(par));
+                arr.set(par, temp);
             }
         }
 
-        // Peek (get min value)
+        //2.  Peek (get min value)
         public int peek() {
             return arr.get(0);
         }
@@ -55,7 +47,7 @@ public class Insert {
             }
         }
 
-        // Remove and return the smallest element 1
+        //3 Remove and return the smallest element 1
         public int remove() {
             if (arr.isEmpty()) {
                 throw new NoSuchElementException("Heap is empty.");

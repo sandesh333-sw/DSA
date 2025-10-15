@@ -55,15 +55,20 @@ public class Cycle {
         
     vis[curr] = true;
 
-    for(Edge e : graph[curr]){
-        if(!vis[e.dest]){
-            if(detectCycleUtil(graph, vis, e.dest, curr)){
-                return true;
-            }
-        } else if(e.dest != par){
-            // The neighbor is visited AND not parent => back edge => cycle
+    for(int i=0; i<graph[curr].size(); i++){
+        Edge e = graph[curr].get(i);
+        //case 3
+        if(!vis[e.dest] && detectCycleUtil(graph, vis, e.dest, curr)){
             return true;
         }
+
+        //case 1
+        else if(vis[e.dest] && e.dest != par){
+            return true;
+        }
+
+        //case 2
+        //continue
     }
 
     return false;
