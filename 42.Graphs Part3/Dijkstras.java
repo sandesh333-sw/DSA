@@ -44,12 +44,17 @@ public class Dijkstras {
 
     public static void dijStras(ArrayList<Edge>[] graph, int src) {
         int[] dist = new int[graph.length];
-        Arrays.fill(dist, Integer.MAX_VALUE);
-        dist[src] = 0;
-
         boolean[] vis = new boolean[graph.length];
+        
+        for(int i=0; i<graph.length; i++){
+            if(i != src){
+                dist[i] = Integer.MAX_VALUE;
+            }
+        }
+
         PriorityQueue<Pair> pq = new PriorityQueue<>();
         pq.add(new Pair(src, 0));
+
 
         while (!pq.isEmpty()) {
             Pair curr = pq.remove();
