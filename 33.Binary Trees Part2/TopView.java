@@ -33,17 +33,27 @@ public class TopView {
 
         while (!q.isEmpty()) {
             Info curr = q.remove();
-            if (!map.containsKey(curr.hd)) {
+            if(curr == null){
+                if(q.isEmpty()){
+                    break;
+                } else {
+                    q.add(null);
+                }
+            }
+
+            //first time
+            if(!map.containsKey(curr.hd)){
                 map.put(curr.hd, curr.node);
             }
 
-            if (curr.node.left != null) {
-                q.add(new Info(curr.node.left, curr.hd - 1));
-                min = Math.min(min, curr.hd - 1);
+            if(curr.node.left != null){
+                q.add(new Info(curr.node.left, curr.hd-1));
+                min = Math.min(min, curr.hd-1);
             }
-            if (curr.node.right != null) {
-                q.add(new Info(curr.node.right, curr.hd + 1));
-                max = Math.max(max, curr.hd + 1);
+
+            if(curr.node.right != null){
+                q.add(new Info(curr.node.right, curr.hd+1));
+                max = Math.max(max, curr.hd+1);
             }
         }
 
