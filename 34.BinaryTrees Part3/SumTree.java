@@ -15,18 +15,16 @@ public class SumTree {
             return 0;
         }
 
-        // Store old value
-        int old_val = root.data;
+        int leftSum = transform(root.left);
+        int rightSum = transform(root.right);
 
-        // Recursively transform left and right subtrees
-        int left_sum = transform(root.left);
-        int right_sum = transform(root.right);
+        int oldValue = root.data;
 
-        // Update current node's data
-        root.data = left_sum + right_sum;
+        // Set current node to sum of left and right subtrees
+        root.data = leftSum + rightSum;
 
-        // Return sum of values under this subtree including the node's original value
-        return root.data + old_val;
+        // Return total sum of subtree (including original node value)
+        return oldValue + root.data;
     }
 
     public static void inorder(Node root) {

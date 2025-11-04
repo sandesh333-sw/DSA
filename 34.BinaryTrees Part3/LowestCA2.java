@@ -16,9 +16,11 @@ public class LowestCA2 {
         if(root == null){
             return null;
         }
+
         if(root.data == n1 || root.data == n2){
             return root;
         }
+        
         Node leftLca = LCA(root.left, n1, n2);
         Node rightLca = LCA(root.right, n1, n2);
 

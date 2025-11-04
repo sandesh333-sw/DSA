@@ -25,7 +25,10 @@ public class LowestCA1 {
             return true;
         }
 
-        if (getPath(root.left, n, path) || getPath(root.right, n, path)) {
+        boolean foundLeft = getPath(root.left, n, path);
+        boolean foundRight = getPath(root.right, n, path);
+
+        if(foundLeft || foundRight){
             return true;
         }
 
@@ -39,8 +42,11 @@ public class LowestCA1 {
         ArrayList<Node> path1 = new ArrayList<>();
         ArrayList<Node> path2 = new ArrayList<>();
 
-        if (!getPath(root, n1, path1) || !getPath(root, n2, path2)) {
-            return null; // One of the nodes not found
+        boolean getPath1 = getPath(root, n1, path1);
+        boolean getPath2 = getPath(root, n2, path2);
+
+        if(!getPath1 || !getPath2){
+            return null;
         }
 
         // Compare the paths to find the last common node
@@ -54,7 +60,7 @@ public class LowestCA1 {
 
         return path1.get(i - 1); // Last common ancestor
     }
-
+  
     public static void main(String[] args) {
         Node root = new Node(1);
         root.left = new Node(2);
