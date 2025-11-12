@@ -29,7 +29,7 @@ public class MergeSort {
             if (arr[i] < arr[j]) {
                 temp[k] = arr[i];
                 i++;
-            } else {
+            } else { 
                 temp[k] = arr[j];
                 j++;
             }
@@ -47,9 +47,12 @@ public class MergeSort {
         }
 
         // Copy the merged subarray into the original array
-        for (k = 0, i = si; k < temp.length; k++, i++) {
+         k = 0;
+         for(i=si; i<=ei; i++){
             arr[i] = temp[k];
-        }
+            k++;
+         }
+
     }
 
     public static void main(String[] args) {
